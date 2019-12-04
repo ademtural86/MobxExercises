@@ -2,12 +2,14 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import Counter from './src/components/Counter';
+
 // create a component
 class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>App</Text>
+        <Counter />
       </View>
     );
   }
