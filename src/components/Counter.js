@@ -2,20 +2,28 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
-// create a component
+import {observer, inject} from 'mobx-react';
+
+//@inject('CounterStore', 'PersonStore')
+//@observer
 class Counter extends Component {
     render() {
+        const { CounterStore, PersonStore } = this.props;
+
         return (
             <View>
-                <Text style={styles.text}>0</Text>
+                <Text style={styles.text}>{CounterStore.count}</Text>
                 <View style={styles.buttonContainer}>
                     <Button 
                         title={"decrement"}
+                        onPress={() => CounterStore.decrement()}
                     />
                     <Button 
                         title={"increment"}
+                        onPress={() => CounterStore.increment()}
                     />
                 </View>
+                <Text style={{ textAlign: 'center'}}>{PersonStore.fullName}</Text>
             </View>
         );
     }
@@ -32,5 +40,4 @@ const styles = StyleSheet.create({
     }
 });
 
-//make this component available to the app
-export default Counter;
+export default inject('CounterStore', 'PersonStore')(observer(Counter));

@@ -2,15 +2,22 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import {Provider} from 'mobx-react';
+import store from './src/store';
+
 import Counter from './src/components/Counter';
+import Person from './src/components/Person';
+import Users from './src/components/Users';
 
 // create a component
 class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Counter />
-      </View>
+      <Provider {...store}>
+        <View style={styles.container}>
+          <Users />
+        </View>
+      </Provider>
     );
   }
 }
